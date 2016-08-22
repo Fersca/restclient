@@ -34,28 +34,28 @@ func TestGetDefault(t *testing.T) {
 
 	//Checks if there was an error
 	if err != nil {
-		t.Fatalf("We got an error", err)
+		t.Fatal("We got an error", err)
 	}
 
 	//Checks if the response was 200OK
 	if response.Code != 200 {
-		t.Fatalf("There was not 200OK", "200", response.Code)
+		t.Fatal("There was not 200OK", "200", response.Code)
 	}
 
 	//Checks if the content of the body is as expected
 	if response.Body != "{\"id\":\"MLA\"}" {
-		t.Fatalf("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
+		t.Fatal("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
 	}
 
 	//Cheks the headers
 	if response.Headers == nil {
-		t.Fatalf("Headers cant be nil")
+		t.Fatal("Headers cant be nil")
 	}
 
 	//Check the content of one header
 	contentType := response.Headers["Content-Type"]
 	if contentType[0] != "application/json;charset=UTF-8" {
-		t.Fatalf("Content-Type:", contentType, "application/json;charset=UTF-8")
+		t.Fatal("Content-Type:", contentType, "application/json;charset=UTF-8")
 	}
 
 	//The end
@@ -69,28 +69,28 @@ func TestGetDefaultWithHeaders(t *testing.T) {
 
 	//Checks if there was an error
 	if err != nil {
-		t.Fatalf("We got an error", err)
+		t.Fatal("We got an error", err)
 	}
 
 	//Checks if the response was 200OK
 	if response.Code != 200 {
-		t.Fatalf("There was not 200OK", "200", response.Code)
+		t.Fatal("There was not 200OK", "200", response.Code)
 	}
 
 	//Checks if the content of the body is as expected
 	if response.Body != "{\"id\":\"MLA\"}" {
-		t.Fatalf("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
+		t.Fatal("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
 	}
 
 	//Cheks the headers
 	if response.Headers == nil {
-		t.Fatalf("Headers cant be nil")
+		t.Fatal("Headers cant be nil")
 	}
 
 	//Check the content of one header
 	contentType := response.Headers["Test"]
 	if contentType[0] != "Test Header" {
-		t.Fatalf("The content was not as expected", "Test Header", contentType[0])
+		t.Fatal("The content was not as expected", "Test Header", contentType[0])
 	}
 
 	//The end
@@ -149,28 +149,28 @@ func TestGetWithCustomPool(t *testing.T) {
 
 	//Checks if there was an error
 	if err != nil {
-		t.Fatalf("We got an error", err)
+		t.Fatal("We got an error", err)
 	}
 
 	//Checks if the response was 200OK
 	if response.Code != 200 {
-		t.Fatalf("There was not 200OK", "200", response.Code)
+		t.Fatal("There was not 200OK", "200", response.Code)
 	}
 
 	//Checks if the content of the body is as expected
 	if response.Body != "{\"id\":\"MLA\"}" {
-		t.Fatalf("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
+		t.Fatal("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
 	}
 
 	//Cheks the headers
 	if response.Headers == nil {
-		t.Fatalf("Headers cant be nil")
+		t.Fatal("Headers cant be nil")
 	}
 
 	//Check the content of one header
 	contentType := response.Headers["Content-Type"]
 	if contentType[0] != "application/json;charset=UTF-8" {
-		t.Fatalf("Content-Type:", contentType, "application/json;charset=UTF-8")
+		t.Fatal("Content-Type:", contentType, "application/json;charset=UTF-8")
 	}
 
 	//The end
@@ -195,28 +195,28 @@ func TestGetWithPatternInCustomPool(t *testing.T) {
 
 	//Checks if there was an error
 	if err != nil {
-		t.Fatalf("We got an error", err)
+		t.Fatal("We got an error", err)
 	}
 
 	//Checks if the response was 200OK
 	if response.Code != 200 {
-		t.Fatalf("There was not 200OK", "200", response.Code)
+		t.Fatal("There was not 200OK", "200", response.Code)
 	}
 
 	//Checks if the content of the body is as expected
 	if response.Body != "{\"id\":\"MLA\"}" {
-		t.Fatalf("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
+		t.Fatal("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
 	}
 
 	//Cheks the headers
 	if response.Headers == nil {
-		t.Fatalf("Headers cant be nil")
+		t.Fatal("Headers cant be nil")
 	}
 
 	//Check the content of one header
 	contentType := response.Headers["Content-Type"]
 	if contentType[0] != "application/json;charset=UTF-8" {
-		t.Fatalf("Content-Type:", contentType, "application/json;charset=UTF-8")
+		t.Fatal("Content-Type:", contentType, "application/json;charset=UTF-8")
 	}
 
 	//The end
@@ -239,7 +239,7 @@ func TestGetWithCustomPoolWithTimeout(t *testing.T) {
 
 	//Checks if there was an error
 	if err == nil {
-		t.Fatalf("We should had got a timeout", err)
+		t.Fatal("We should had got a timeout", err)
 	}
 
 	//Restore the pool
@@ -267,7 +267,7 @@ func TestGetWithCache(t *testing.T) {
 
 	//Checks if the content of the body is as expected and was not from the cache
 	if response.Body != "{\"id\":\"MLA\"}" || response.CachedContent == true {
-		t.Fatalf("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
+		t.Fatal("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
 	}
 
 	//Do the GET call
@@ -277,7 +277,7 @@ func TestGetWithCache(t *testing.T) {
 	if cachedResponse.Body != "{\"id\":\"MLA\"}" || cachedResponse.CachedContent == false {
 		fmt.Println("Cached content:", cachedResponse.CachedContent)
 		fmt.Println("Code:", cachedResponse.Code)
-		t.Fatalf("The content was not as expected or was not cached", "{\"id\":\"MLA\"}", cachedResponse.Body)
+		t.Fatal("The content was not as expected or was not cached", "{\"id\":\"MLA\"}", cachedResponse.Body)
 	}
 
 	//Test what happend if there is not Cache-Control header
@@ -292,7 +292,7 @@ func TestGetWithCache(t *testing.T) {
 
 	//Checks if the content of the body is as expected and was not from the cache
 	if response.Body != "{\"id\":\"MLA\"}" || response.CachedContent == true {
-		t.Fatalf("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
+		t.Fatal("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
 	}
 
 	//Do the GET call again and check that the last call was not cached
@@ -300,7 +300,7 @@ func TestGetWithCache(t *testing.T) {
 
 	//Checks if the content of the body is as expected and was from the cache
 	if cachedResponse.Body != "{\"id\":\"MLA\"}" || cachedResponse.CachedContent == true {
-		t.Fatalf("The content was not as expected", "{\"id\":\"MLA\"}", cachedResponse.Body)
+		t.Fatal("The content was not as expected", "{\"id\":\"MLA\"}", cachedResponse.Body)
 	}
 
 	//Test what happend if the response has a Cache-Control=0
@@ -315,7 +315,7 @@ func TestGetWithCache(t *testing.T) {
 
 	//Checks if the content of the body is as expected and was not from the cache
 	if response.Body != "{\"id\":\"MLA\"}" || response.CachedContent == true {
-		t.Fatalf("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
+		t.Fatal("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
 	}
 
 	//Do the GET call again and check that the last call was not cached
@@ -323,7 +323,7 @@ func TestGetWithCache(t *testing.T) {
 
 	//Checks if the content of the body is as expected and was from the cache
 	if cachedResponse.Body != "{\"id\":\"MLA\"}" || cachedResponse.CachedContent == true {
-		t.Fatalf("The content was not as expected", "{\"id\":\"MLA\"}", cachedResponse.Body)
+		t.Fatal("The content was not as expected", "{\"id\":\"MLA\"}", cachedResponse.Body)
 	}
 
 	//Reset the cache to (not cache)
@@ -350,7 +350,7 @@ func TestGetWithStaleCache(t *testing.T) {
 
 	//Checks if the content of the body is as expected and was not from the cache
 	if response.Body != "{\"id\":\"MLA\"}" || response.CachedContent == true {
-		t.Fatalf("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
+		t.Fatal("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
 	}
 
 	//Do the GET call
@@ -360,7 +360,7 @@ func TestGetWithStaleCache(t *testing.T) {
 	if cachedResponse.Body != "{\"id\":\"MLA\"}" || cachedResponse.CachedContent == false || cachedResponse.Staled == true {
 		fmt.Println("Cached content:", cachedResponse.CachedContent)
 		fmt.Println("Code:", cachedResponse.Code)
-		t.Fatalf("The content was not as expected or was not cached", "{\"id\":\"MLA\"}", cachedResponse.Body)
+		t.Fatal("The content was not as expected or was not cached", "{\"id\":\"MLA\"}", cachedResponse.Body)
 	}
 
 	//Sleep for 2 seconds to expire the cachedResponse
@@ -374,7 +374,7 @@ func TestGetWithStaleCache(t *testing.T) {
 		fmt.Println("Cached content:", staledResponse.CachedContent)
 		fmt.Println("Code:", staledResponse.Code)
 		fmt.Println("Staled:", staledResponse.Staled)
-		t.Fatalf("The content was not as expected or was not cached", "{\"id\":\"MLA\"}", staledResponse.Body)
+		t.Fatal("The content was not as expected or was not cached", "{\"id\":\"MLA\"}", staledResponse.Body)
 	}
 
 	//Reset the cache to (not cache)
@@ -393,28 +393,28 @@ func TestPostDefault(t *testing.T) {
 
 	//Checks if there was an error
 	if err != nil {
-		t.Fatalf("We got an error", err)
+		t.Fatal("We got an error", err)
 	}
 
 	//Checks if the response was 201OK
 	if response.Code != 201 {
-		t.Fatalf("There was not 201OK", "201", response.Code)
+		t.Fatal("There was not 201OK", "201", response.Code)
 	}
 
 	//Checks if the content of the body is as expected
 	if response.Body != "echo --> {\"id\":\"MLA\"}" {
-		t.Fatalf("The content was not as expected", "echo --> {\"id\":\"MLA\"}", response.Body)
+		t.Fatal("The content was not as expected", "echo --> {\"id\":\"MLA\"}", response.Body)
 	}
 
 	//Cheks the headers
 	if response.Headers == nil {
-		t.Fatalf("Headers cant be nil")
+		t.Fatal("Headers cant be nil")
 	}
 
 	//Check the content of one header
 	contentType := response.Headers["Content-Type"]
 	if contentType[0] != "application/json;charset=UTF-8" {
-		t.Fatalf("Content-Type:", contentType, "application/json;charset=UTF-8")
+		t.Fatal("Content-Type:", contentType, "application/json;charset=UTF-8")
 	}
 
 	//The end
@@ -429,28 +429,28 @@ func TestPutDefault(t *testing.T) {
 
 	//Checks if there was an error
 	if err != nil {
-		t.Fatalf("We got an error", err)
+		t.Fatal("We got an error", err)
 	}
 
 	//Checks if the response was 201OK
 	if response.Code != 200 {
-		t.Fatalf("There was not 201OK", "201", response.Code)
+		t.Fatal("There was not 201OK", "201", response.Code)
 	}
 
 	//Checks if the content of the body is as expected
 	if response.Body != "echoPut --> {\"id\":\"MLA\"}" {
-		t.Fatalf("The content was not as expected", "echo --> {\"id\":\"MLA\"}", response.Body)
+		t.Fatal("The content was not as expected", "echo --> {\"id\":\"MLA\"}", response.Body)
 	}
 
 	//Cheks the headers
 	if response.Headers == nil {
-		t.Fatalf("Headers cant be nil")
+		t.Fatal("Headers cant be nil")
 	}
 
 	//Check the content of one header
 	contentType := response.Headers["Content-Type"]
 	if contentType[0] != "application/json;charset=UTF-8" {
-		t.Fatalf("Content-Type:", contentType, "application/json;charset=UTF-8")
+		t.Fatal("Content-Type:", contentType, "application/json;charset=UTF-8")
 	}
 
 	//The end
@@ -465,22 +465,22 @@ func TestDeleteDefault(t *testing.T) {
 
 	//Checks if there was an error
 	if err != nil {
-		t.Fatalf("We got an error", err)
+		t.Fatal("We got an error", err)
 	}
 
 	//Checks if the response was 201OK
 	if response.Code != 200 {
-		t.Fatalf("There was not 200OK", "200", response.Code)
+		t.Fatal("There was not 200OK", "200", response.Code)
 	}
 
 	//Checks if the content of the body is as expected
 	if response.Body != "echoDelete --> OK" {
-		t.Fatalf("The content was not as expected", "echoDelete --> OK", response.Body)
+		t.Fatal("The content was not as expected", "echoDelete --> OK", response.Body)
 	}
 
 	//Cheks the headers
 	if response.Headers == nil {
-		t.Fatalf("Headers cant be nil")
+		t.Fatal("Headers cant be nil")
 	}
 
 	//The end
@@ -495,12 +495,12 @@ func TestHeadDefault(t *testing.T) {
 
 	//Checks if there was an error
 	if err != nil {
-		t.Fatalf("We got an error", err)
+		t.Fatal("We got an error", err)
 	}
 
 	//Checks if the response was 201OK
 	if response.Code != 200 {
-		t.Fatalf("There was not 200OK", "200", response.Code)
+		t.Fatal("There was not 200OK", "200", response.Code)
 	}
 
 	//The end
@@ -525,17 +525,17 @@ func TestMock(t *testing.T) {
 
 	//Checks if there was an error
 	if err != nil {
-		t.Fatalf("We got an error", err)
+		t.Fatal("We got an error", err)
 	}
 
 	//Checks if the response was 20OK
 	if response.Code != 200 {
-		t.Fatalf("There was not 200OK", "200", response.Code)
+		t.Fatal("There was not 200OK", "200", response.Code)
 	}
 
 	//Checks if the content of the body is as expected and was not from the cache
 	if response.Body != "{\"id\":\"FER\"}" || response.CachedContent == true {
-		t.Fatalf("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
+		t.Fatal("The content was not as expected", "{\"id\":\"MLA\"}", response.Body)
 	}
 
 	//The end
@@ -562,17 +562,17 @@ func TestMockWithHeaders(t *testing.T) {
 
 	//Checks if there was an error
 	if err != nil {
-		t.Fatalf("We got an error", err)
+		t.Fatal("We got an error", err)
 	}
 
 	//Checks if the response was 201OK
 	if response.Code != 200 {
-		t.Fatalf("There was not 200OK", "200", response.Code)
+		t.Fatal("There was not 200OK", "200", response.Code)
 	}
 
 	//Checks if the content of the body is as expected and was not from the cache
 	if response.Body != "{\"id\":\"Vale\"}" || response.CachedContent == true {
-		t.Fatalf("The content was not as expected", "{\"id\":\"Vale\"}", response.Body)
+		t.Fatal("The content was not as expected", "{\"id\":\"Vale\"}", response.Body)
 	}
 
 	//The end
@@ -588,29 +588,29 @@ func TestSeveralGETMocks(t *testing.T) {
 	mocks["http://fer2.com"] = Response{Body: "{\"id\":\"Fer\"}", Code: 200}
 	mocks["http://vale2.com"] = Response{Body: "{\"id\":\"Vale\"}", Code: 201}
 	mocks["http://fer/.*/pipi"] = Response{Body: "{\"id\":\"Artu\"}", Code: 200}
-		
+
 	//Add the mocks to the API
 	AddMocks(mocks)
-	
+
 	//Set the regex urls
 	URLasRegexp("http://fer/.*/pipi")
-	
+
 	//Do the Get call
 	response, err := Get("http://fer2.com")
 
 	//Checks if there was an error
 	if err != nil {
-		t.Fatalf("We got an error", err)
+		t.Fatal("We got an error", err)
 	}
 
 	//Checks if the response was 200OK
 	if response.Code != 200 {
-		t.Fatalf("There was not 200OK", "200", response.Code)
+		t.Fatal("There was not 200OK", "200", response.Code)
 	}
 
 	//Checks if the content of the body is as expected and was not from the cache
 	if response.Body != "{\"id\":\"Fer\"}" || response.CachedContent == true {
-		t.Fatalf("The content was not as expected", "{\"id\":\"Fer\"}", response.Body)
+		t.Fatal("The content was not as expected", "{\"id\":\"Fer\"}", response.Body)
 	}
 
 	//Do the Get call
@@ -618,17 +618,17 @@ func TestSeveralGETMocks(t *testing.T) {
 
 	//Checks if there was an error
 	if err != nil {
-		t.Fatalf("We got an error", err)
+		t.Fatal("We got an error", err)
 	}
 
 	//Checks if the response was 201
 	if response.Code != 201 {
-		t.Fatalf("There was not 201OK", "201", response.Code)
+		t.Fatal("There was not 201OK", "201", response.Code)
 	}
 
 	//Checks if the content of the body is as expected and was not from the cache
 	if response.Body != "{\"id\":\"Vale\"}" || response.CachedContent == true {
-		t.Fatalf("The content was not as expected", "{\"id\":\"Vale\"}", response.Body)
+		t.Fatal("The content was not as expected", "{\"id\":\"Vale\"}", response.Body)
 	}
 
 	//Do the Get call
@@ -636,17 +636,17 @@ func TestSeveralGETMocks(t *testing.T) {
 
 	//Checks if there was an error
 	if err != nil {
-		t.Fatalf("We got an error", err)
+		t.Fatal("We got an error", err)
 	}
 
 	//Checks if the response was 200
 	if response.Code != 200 {
-		t.Fatalf("There was not 200OK", "200", response.Code)
+		t.Fatal("There was not 200OK", "200", response.Code)
 	}
 
 	//Checks if the content of the body is as expected and was not from the cache
 	if response.Body != "{\"id\":\"Artu\"}" || response.CachedContent == true {
-		t.Fatalf("The content was not as expected", "{\"id\":\"Artu\"}", response.Body)
+		t.Fatal("The content was not as expected", "{\"id\":\"Artu\"}", response.Body)
 	}
 
 	//The end
@@ -669,7 +669,7 @@ func restAPI() {
 
 	err := http.ListenAndServe("0.0.0.0:8080", nil)
 	if err != nil {
-		fmt.Printf("Error", err)
+		fmt.Print("Error", err)
 	}
 }
 
