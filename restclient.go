@@ -402,7 +402,7 @@ func getPool(callURL string) *rClient {
 func setHeaders(request *http.Request, headers map[string]string) {
 	//Set the headers to call the APIs
 	request.Header.Set("Accept", "application/json")
-	request.Header.Set("Connection", "Keep-Alive")
+	//request.Header.Set("Connection", "Keep-Alive")
 
 	//set Content-Type
 	if request.Method != http.MethodGet {
